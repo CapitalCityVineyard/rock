@@ -136,22 +136,7 @@ footer {
     }
 }
 
-.SM-Links{
-    display: inline-block;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    }
-.SM-Links-group {
-margin: auto;
-max-width: fit-content;
-display: inline-block;
-    }
-.SM-Links-item{
-    display:inline;
-    padding-left:0.25em;
-    padding-right:0.25em;
-    }
+
 
     .aboutmini-outer{
         background-color: @CCVGreen;
@@ -175,15 +160,18 @@ font-size: 2.5vw;
     background-color: @CCVGreen;
     background-image: @CCVbg-b;
     text-align:center;
+    margin-bottom:10px;
+
     .F-inner{
         padding-top: 30px;
         text-align: left;
         color: @header-text-color;
 
     }
-    .F-outer{
-        margin-bottom:10px;
-    }
+
+}
+.F-Pannel{
+  all:initial  
 }
 
 .Foot-B{
@@ -247,22 +235,7 @@ nav.shrink .navbar-brandmark {
     padding-bottom: 1px !important;
 }
 
-.SM-Links {
-	display: block;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-	
-	.sm-group {
-		margin:auto;
-		max-width: fit-content;
-	}
-	.sm-item {
-		display:inline;
-    	padding-left:0.25em;
-    	padding-right:0.25em;
-	}
-}
+.
 .mission {
     /*display:block;*/
     font-family: 'Merrieweather';
@@ -282,4 +255,7 @@ nav.shrink .navbar-brandmark {
     background-image: url("../Assets/bg2.svg");
     background-repeat: repeat;
 }
+
+
+@import "footerpanel.less";
 @import "_css-overrides.less";
