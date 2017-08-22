@@ -9,6 +9,11 @@ l        <div class="container-fluid">
                     <Rock:Zone Name="Feature" runat="server" />
                 </div>
             </div>
+            <div class="row"> 
+                <div class="col-md-12 rotater">
+                    <Rock:Zone Name="aboutmini" runat="server" />
+                </div>
+            </div>
         </div>
     </section>
 
