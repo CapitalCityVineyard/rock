@@ -7320,7 +7320,6 @@ footer .footer-address {
   padding: 0px;
   margin-top: 60px;
   margin-bottom: 60px;
-  font-size: 2.5vw;
   color: #fff;
 }
 /* hide block panels */
@@ -7341,9 +7340,21 @@ footer .footer-address {
 .simpleshadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+body {
+  padding-top: 30px !important;
+}
+.aboutmini-inner {
+  font-size: 5vw;
+}
 @media (min-width: 768px) {
   #announcement-rotator {
     margin: 30px 0;
+  }
+  body {
+    paddin-top: 30px !important;
+  }
+  .aboutmini-inner {
+    font-size: 3vw;
   }
 }
 @media (min-width: 1200px) {
@@ -7358,6 +7369,9 @@ footer .footer-address {
   nav.shrink .navbar-brandmark {
     height: 45px !important;
     padding-bottom: 1px !important;
+  }
+  .aboutmini-inner {
+    font-size: 2.5vw;
   }
 }
 .navbar-brandmark {

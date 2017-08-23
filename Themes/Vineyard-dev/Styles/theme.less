@@ -155,7 +155,6 @@ footer {
     padding: 0px;
     margin-top: 60px;
     margin-bottom: 60px;
-    font-size: 2.5vw;
     color: @theme-8-text;
 }
 
@@ -185,14 +184,24 @@ footer {
 // -------------------------
 // default styling should be for phones 767px or less
 
-
+body{
+	padding-top: 30px !important;
+	}
+	.aboutmini-inner{
+		font-size: 5vw;	
+	}
 
 // Small devices (tablets, 768px and up)
 @media (min-width: @screen-sm-min) {
     #announcement-rotator {
         margin: @spacing-lg-px 0;
     }
-
+	body {
+		paddin-top:30px !important;
+	}
+	.aboutmini-inner{
+		font-size: 3vw;	
+	}
 }
 
 // Medium devices (desktops, 992px and up)
@@ -214,6 +223,9 @@ footer {
     nav.shrink .navbar-brandmark {
         height: 45px !important;
         padding-bottom: 1px !important;
+    }
+    .aboutmini-inner{
+    	font-size: 2.5vw;
     }
 }
 
