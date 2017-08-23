@@ -7345,8 +7345,6 @@ footer .footer-address {
   #announcement-rotator {
     margin: 30px 0;
   }
-}
-@media (min-width: 992px) {
   .navbar-brandmark-long {
     display: none;
   }
