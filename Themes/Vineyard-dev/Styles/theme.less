@@ -136,26 +136,24 @@ footer {
     }
 }
 
+.aboutmini-outer {
+    background-color: @CCVGreen;
+    background-image: @CCVbg-b;
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: 30px;
+}
 
+.aboutmini-inner {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    font-size: 2.5vw;
+    color: @theme-8-text;
+}
 
-    .aboutmini-outer{
-        background-color: @CCVGreen;
-        background-image: @CCVbg-b;
-        text-align:center;
-        margin-top:-30px;
-        margin-bottom:30px;
-  }
-.aboutmini-inner{
-     
-      display: inline-block;
-      margin:0 auto;
-  	padding:0px;
-  	margin-top:60px;
-  	margin-bottom:60px;
-font-size: 2.5vw;
-  	color:@theme-8-text;
-
-    }
 
 /* hide block panels */
 
@@ -192,28 +190,23 @@ font-size: 2.5vw;
 @media (min-width: @screen-md-min) {}
 
 // Large devices (large desktops, 1200px and up)
-@media (min-width: @screen-lg-min) {}
-
-body {
-    padding-top: 39px !important;
+@media (min-width: @screen-lg-min) {
+    body {
+        padding-top: 39px !important;
+    }
+    .rotater {
+        padding: 0px !important;
+    }
+    .navbar-brandmark {
+        height: inherit;
+        padding-top: 2px;
+        padding-bottom: 4px;
+    }
+    nav.shrink .navbar-brandmark {
+        height: 45px !important;
+        padding-bottom: 1px !important;
+    }
 }
-.rotater {
-    padding:0px !important;
-}
-
-
-.navbar-brandmark {
-    height: inherit;
-    padding-top: 2px;
-    padding-bottom: 4px;
-}
-
-
-nav.shrink .navbar-brandmark {
-    height: 45px !important;
-    padding-bottom: 1px !important;
-}
-
 
 .mission {
     /*display:block;*/
@@ -225,16 +218,15 @@ nav.shrink .navbar-brandmark {
     text-align: center;
 }
 
-.background-vines-a{
+.background-vines-a {
     background-image: url("../Assets/bg.svg");
     background-repeat: repeat;
 }
 
-.background-vines-b{
+.background-vines-b {
     background-image: url("../Assets/bg2.svg");
     background-repeat: repeat;
 }
-
 
 @import "footerpanel.less";
 @import "_css-overrides.less";
