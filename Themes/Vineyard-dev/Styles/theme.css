@@ -7345,22 +7345,10 @@ footer .footer-address {
   #announcement-rotator {
     margin: 30px 0;
   }
-  .navbar-brandmark-long {
-    display: none;
-  }
-  .navbar-brandmark-square {
-    display: initial;
-  }
 }
 @media (min-width: 1200px) {
   body {
     padding-top: 38px !important;
-  }
-  .navbar-brandmark-long {
-    display: initial;
-  }
-  .navbar-brandmark-square {
-    display: none;
   }
   .navbar-brandmark {
     height: inherit !important;
