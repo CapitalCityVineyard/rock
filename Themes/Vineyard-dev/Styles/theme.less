@@ -33,7 +33,9 @@ html {
 main {
     display: block;
 }
-
+.navbar-brandmark-square{
+    display: none;
+}
 // 2. Bootstrap Overrides
 // -------------------------
 .navbar {
@@ -195,7 +197,11 @@ footer {
 
 // Medium devices (desktops, 992px and up)
 @media (min-width: @screen-md-min) {
-
+    .navbar-brandmark-long{
+        display: none;
+    }
+    .navbar-brandmark-square:
+display:initial;
 }
 
 // Large devices (large desktops, 1200px and up)
