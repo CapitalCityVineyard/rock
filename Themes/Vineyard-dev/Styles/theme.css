@@ -7351,10 +7351,15 @@ body {
     margin: 30px 0;
   }
   body {
-    paddin-top: 30px !important;
+    padding-top: 30px !important;
   }
   .aboutmini-inner {
     font-size: 3vw;
+  }
+}
+@media (min-width: 992px) {
+  body {
+    padding-top: initial !important;
   }
 }
 @media (min-width: 1200px) {
