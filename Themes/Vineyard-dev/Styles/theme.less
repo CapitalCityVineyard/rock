@@ -184,10 +184,19 @@ footer {
     #announcement-rotator {
         margin: @spacing-lg-px 0;
     }
+
 }
 
 // Medium devices (desktops, 992px and up)
-@media (min-width: @screen-md-min) {}
+@media (min-width: @screen-md-min) {
+
+    .navbar-brandmark {
+        height: inherit;
+        padding-top: 2px;
+        height: 45px !important;
+        padding-bottom: 1px !important;
+    }
+}
 
 // Large devices (large desktops, 1200px and up)
 @media (min-width: @screen-lg-min) {
