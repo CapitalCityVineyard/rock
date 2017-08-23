@@ -7354,7 +7354,13 @@ footer .footer-address {
 }
 @media (min-width: 1200px) {
   body {
-    padding-top: 39px !important;
+    padding-top: 38px !important;
+  }
+  .navbar-brandmark-long {
+    display: initial;
+  }
+  .navbar-brandmark-square {
+    display: none;
   }
   .navbar-brandmark {
     height: inherit !important;
