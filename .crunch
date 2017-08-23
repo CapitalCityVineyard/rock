@@ -85,6 +85,7 @@
 				"_print.less",
 				"_variable-overrides.less",
 				"_variables.less",
+				"footerpanel.less",
 				"theme.less"
 			]
 		},
