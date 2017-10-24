@@ -1,0 +1,14 @@
+{% page ids:'513, 514, 515' %}
+{% for page in pageItems %}
+    <div class="col-sm-4 F-pannel F-InsideP">
+        <h3 class="">{{ page.PageTitle }}</h3>
+            <div class="list-group F-P-list">
+                {% for childPage in page.Pages %}
+                    
+                    <a href="/page/{{childPage.Id }}" class="list-group-item F-P-item">{{ childPage.PageTitle }}</a>
+                {% endfor %}
+            </div>
+            
+    </div>
+{% endfor %}
+{% endpage %}

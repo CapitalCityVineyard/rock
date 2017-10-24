@@ -1,12 +1,17 @@
-﻿<%@ Page Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" Inherits="Rock.Web.UI.RockPage" %>
+﻿ <%@ Page Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" Inherits="Rock.Web.UI.RockPage" %>
 
 <asp:Content ID="ctFeature" ContentPlaceHolderID="feature" runat="server">
 
     <section class="main-feature">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+l        <div class="container-fluid">
+            <div class="row"> 
+                <div class="col-md-12 rotater">
                     <Rock:Zone Name="Feature" runat="server" />
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="col-md-12 rotater">
+                    <Rock:Zone Name="aboutmini" runat="server" />
                 </div>
             </div>
         </div>
