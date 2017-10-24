@@ -7,7 +7,7 @@
         <!-- Start Content Area -->
         
         <!-- Page Title -->
-        <Rock:PageIcon ID="PageIcon" runat="server" /> <h1><Rock:PageTitle ID="PageTitle" runat="server" /></h1>
+         <h1><Rock:PageIcon ID="PageIcon" runat="server" /> <Rock:PageTitle ID="PageTitle" runat="server" /></h1>
         
         <!-- Breadcrumbs -->    
         <Rock:PageBreadCrumbs ID="PageBreadCrumbs" runat="server" />
