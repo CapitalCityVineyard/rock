@@ -1,0 +1,6 @@
+<ul class='SM-Links sm-group'>
+    {% for definedValue in DefinedValues %}
+            <li class='SM-item
+            '><a href="{{ definedValue.Description }}" title="{{ definedValue.Value }}"><i class="{{ definedValue.Icon }} fa-2x" aria-hidden="true"></i></a></li>
+    {% endfor %}
+</ul>

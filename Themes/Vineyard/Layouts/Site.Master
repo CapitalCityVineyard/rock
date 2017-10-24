@@ -25,6 +25,7 @@
     <title></title>
     
     <script src="<%# ResolveRockUrl("~/Scripts/jquery-1.12.4.min.js" ) %>"></script>
+    <script src="<%# ResolveRockUrl("~/Scripts/jquery.fancybox.min.js" ) %>"></script>
 
     <!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -46,7 +47,16 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-iphone-retina.png", true) %>"/>
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-ipad.png", true) %>"/>
     <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-iphone.png", true) %>"/>
-    
+    <script>
+        $(window).scroll(function() {
+  if ($(document).scrollTop() > 80) {
+    $('nav').addClass('shrink');
+  } else {
+    $('nav').removeClass('shrink');
+  }
+});
+    </script>
+
 </head>
 <body runat="server" id="body">
 
@@ -56,7 +66,7 @@
         <header>
         
             <!-- Brand Bar -->
-            <nav class="navbar navbar-inverse navbar-static-top">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
 			        <div class="navbar-header">
                         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -81,17 +91,28 @@
         <asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
 
 	    <footer>
+        <div class="row Foot-A F-outer">
             <div class="container">
-		    
-                <hr />
-
-                <div class="row">
-			        <div class="col-md-12">
+                <div class="Foot-A F-inner">       
+                    <div class="col-md-4">
+                        <Rock:Zone Name="Section F-A" runat="server" />
+                    </div>
+                    <div class="col-md-4">
+                        <Rock:Zone Name="Section F-B" runat="server" />
+                    </div>
+                    <div class="col-md-4">
+                        <Rock:Zone Name="Section F-C" runat="server" />
+                    </div>
+                    </div>
+                </div>
+                </div>
+            <div class="container">
+                <div class="row Foot-B">
+                    <div class="col-md-12 ">
 				        <Rock:Zone Name="Footer" runat="server" />
 			        </div>
-		        </div>
-
-            </div>
+                </div>
+ 		    </div>
 	    </footer>
         
         <%-- controls for scriptmanager and update panel --%>

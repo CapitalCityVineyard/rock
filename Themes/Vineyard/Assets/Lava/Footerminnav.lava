@@ -1,0 +1,22 @@
+<div class="row minfoot">
+{% page ids:'513, 514, 515' %}
+{% for page in pageItems %}
+                <div class="col-sm-4 minfoot">
+                    <div class="panel panel-default">
+                          <div class="panel-heading">
+                                <h3 class="panel-title">{{ page.PageTitle }}</h3>
+                          </div>
+                          <!-- <div class="panel-body">
+                                Panel content
+                          </div> -->
+                          <div  class="list-group">
+                          {% for childPage in page.Pages %}
+                                <a href="/page/{{childPage.Id }}" class="list-group-item">{{ childPage.PageTitle }}</a>
+                                {% endfor %}
+                              </div >
+                    </div>
+                    
+                </div>
+                {% endfor %}
+                {% endpage %}
+            </div>

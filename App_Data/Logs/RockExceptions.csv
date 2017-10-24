@@ -15,3 +15,6 @@
 7/28/2017 2:45:31 AM,System.Data.Entity.Infrastructure.CommitFailedException,"An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information."
 7/28/2017 2:45:31 AM,System.Data.SqlClient.SqlException,"Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding."
 7/28/2017 2:45:31 AM,System.ComponentModel.Win32Exception,"The wait operation timed out"
+10/6/2017 10:29:10 AM,System.Data.Entity.Infrastructure.CommitFailedException,"An error was reported while committing a database transaction but it could not be determined whether the transaction succeeded or failed on the database server. See the inner exception and http://go.microsoft.com/fwlink/?LinkId=313468 for more information."
+10/6/2017 10:29:10 AM,System.Data.SqlClient.SqlException,"Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding."
+10/6/2017 10:29:10 AM,System.ComponentModel.Win32Exception,"The wait operation timed out"
