@@ -1,0 +1,21 @@
+<div class='panel panel-block'> 
+    <div class='panel-heading'>
+       <h4 class='panel-title'>Prayer Requests</h4>
+    </div>
+    <div class='panel-body'>
+
+        <ul>
+        {% for prayerrequestitem in PrayerRequestItems %}
+            {% if LinkUrl != '' %}
+                <li>{{ prayerrequestitem.EnteredDateTime | Date:'M/d/yyyy'}} - <a href='{{ LinkUrl | Replace:'[Id]',prayerrequestitem.Id }}'>{{ prayerrequestitem.Text }}</a></li>
+            {% else %}
+                <li>{{ prayerrequestitem.EnteredDateTime | Date:'M/d/yyyy'}} - {{ prayerrequestitem.Text }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        
+    </div>
+</div>
+
+
+
