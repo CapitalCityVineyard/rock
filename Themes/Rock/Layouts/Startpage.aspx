@@ -25,14 +25,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <Rock:Zone Name="Section 1A" runat="server" />
+                <div class="col-md-9">
+                    <Rock:Zone Name="Short Cuts" runat="server" />
                 </div>
-                <div class="col-md-4">
-                    <Rock:Zone Name="Section 1B" runat="server" />
-                </div>
-                <div class="col-md-4">
-                    <Rock:Zone Name="Section 1C" runat="server" />
+                <div class="col-md-3">
+                    <Rock:Zone Name="VOTD" runat="server" />
                 </div>
             </div>
 
