@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Name
+                    <small>
+                        <span class="pull-right"> CreatedDateTime</span>
+                    </small>
+                </h3>
+            </div>
+            <div class="panel-body">
+                Panel content
+            </div>
+            <div class="panel-footer">Panel footer</div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<ul>
+    {% for prayerrequestitem in PrayerRequestItems %} {% if LinkUrl != '' %}
+    <li>{{ prayerrequestitem.EnteredDateTime | Date:'M/d/yyyy'}} -
+        <a href='{{ LinkUrl | Replace:' [Id] ',prayerrequestitem.Id }}'>{{ prayerrequestitem.Text }}</a>
+    </li>
+    {% else %}
+    <li>{{ prayerrequestitem.EnteredDateTime | Date:'M/d/yyyy'}} - {{ prayerrequestitem.Text }}</li>
+    {% endif %} {% endfor %}
+</ul>
+
+
+{% for prayerrequestitem in PrayerRequestItems %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"> {{ prayerrequestitem.FirstName }} {{ prayerrequestitem.LastName }}
+            <span class="pull-right"> {{ prayerrequestitem.EnteredDateTime | Date: 'dddd, MMMM d,'}}</span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        {% assign requestlegnth = prayerrequestitem.Text | Size %} {% if requestlegnth < 250 %} {{ prayerrequestitem.Text  }} {% else %} {{ prayerrequestitem.Text | Truncate:250 }} {% endif %} </div>
+
+
+        </div>
+        {% endfor %}
