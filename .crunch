@@ -176,6 +176,37 @@
 				"_variables.less",
 				"theme.less"
 			]
+		},
+		"Styles/FontAwesome/font-awesome.less": {
+			"engines": [
+				{
+					"compiler": "less",
+					"output": "../../../../Users/mjrider/Desktop/font-awesome.css",
+					"options": {
+						"compress": false,
+						"ieCompat": false,
+						"strictMath": false,
+						"strictUnits": false,
+						"javascriptEnabled": false,
+						"sourceMap": true
+					}
+				}
+			],
+			"sources": [
+				"animated.less",
+				"bordered-pulled.less",
+				"core.less",
+				"fixed-width.less",
+				"icons.less",
+				"larger.less",
+				"list.less",
+				"mixins.less",
+				"path.less",
+				"rotated-flipped.less",
+				"screen-reader.less",
+				"stacked.less",
+				"variables.less"
+			]
 		}
 	}
 }
