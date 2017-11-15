@@ -28,8 +28,8 @@
                 <div class="col-md-9">
                     <Rock:Zone Name="Short Cuts" runat="server" />
                 </div>
-                <div class="col-md-3">
-                    <Rock:Zone Name="VOTD" runat="server" />
+                <div class="col-md-3"
+                    <Rock:Zone Name="Sidebar 1" runat="server" />
                 </div>
             </div>
 
