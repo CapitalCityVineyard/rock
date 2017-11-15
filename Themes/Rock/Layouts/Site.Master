@@ -42,6 +42,7 @@
 
    
     <script src="<%# ResolveRockUrl("~/Scripts/FontAwesomePro/packs/regular.js" ) %>"></script>
+    <script src="<%# ResolveRockUrl("~/Scripts/FontAwesomePro/packs/brands.js" ) %>"></script>
     <script src="<%# ResolveRockUrl("~/Scripts/FontAwesomePro/v4-shims.js" ) %>"></script>
     <script src="<%# ResolveRockUrl("~/Scripts/FontAwesomePro/fontawesome.js" ) %>"></script>
 
