@@ -25,18 +25,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <Rock:Zone Name="Section 1A" runat="server" />
+                <div class="col-md-9">
+                    <Rock:Zone Name="Short Cuts" runat="server" />
                 </div>
-                <div class="col-md-4">
-                    <Rock:Zone Name="Section 1B" runat="server" />
-                </div>
-                <div class="col-md-4">
-                    <Rock:Zone Name="Section 1C" runat="server" />
+                <div class="col-md-3 hidden-xs hidden-sm">
+                    <Rock:Zone Name="VOTD" runat="server" />
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row">  <!-- Full Width -->
                 <div class="col-md-12">
                     <Rock:Zone Name="Full Width 1" runat="server" />
                 </div>
@@ -53,11 +50,29 @@
                     <Rock:Zone Name="Section 2C" runat="server" />
                 </div>
             </div>
+<br>
+            <div class="row">
+                <div class="col-md-3">
+                    <Rock:Zone Name="Sidebar2" runat="server" />
+                </div>
+                <div class="col-md-9">
+                    <Rock:Zone Name="Tasks" runat="server" />
+                </div>
+
+
+            </div>
+
+    
             <div class="row">
                 <div class="col-md-12">
                     <Rock:Zone Name="Full Width 2" runat="server" />
                 </div>
             </div>
+            <div class="row">
+                    <div class="col-md-12 visible-xs-sm hidden-md hidden-lg">
+                        <Rock:Zone Name="VOTDb" runat="server" />
+                    </div>
+                </div>
         </section>
 
         <!-- End Content Area -->
