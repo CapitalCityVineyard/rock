@@ -99,7 +99,7 @@ src:url('Fonts/raleway/italic-webfont.woff') format('woff'),url('Fonts/raleway/i
 font-weight:normal;
 font-style:italic}
 @font-face{font-family:'Raleway';
-src:url('Fonts/raleway/bolditalic-webfont:.woff') format('woff');
+src:url('Fonts/raleway/bolditalic-webfont.woff') format('woff');
 font-weight:bold;
 font-style:italic}
 @font-face{font-family:'Raleway';
