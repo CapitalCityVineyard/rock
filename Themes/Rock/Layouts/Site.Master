@@ -55,20 +55,24 @@
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
     <!-- Icons -->
-    <!--<link rel="shortcut icon" href="<%# ResolveRockUrl("~/Assets/Icons/favicon.ico", true) %>"/>-->
+    <link rel="shortcut icon" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/favicon.ico", true) %>"/>
     
     
 
-    
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%# ResolveRockUrl("~/Assets/Icons/touch-icon-ipad-retina.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("~/Assets/Icons/touch-icon-iphone-retina.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("~/Assets/Icons/touch-icon-ipad.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("~/Assets/Icons/touch-icon-iphone.png", true) %>"/>
+            <!--  Apple Touch Icons  -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.144.png", true) %>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.114.png", true) %>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.72.png", true) %>"/>
+    <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.57.png", true) %>"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="CCV Rock">
     
 
             <!--  Android / Chrome  -->
     <link rel="manifest" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/manifest.json", true) %>">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#EF7625">
 
 </head>
 <body runat="server" id="body">
