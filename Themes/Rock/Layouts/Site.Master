@@ -70,9 +70,10 @@
     
 
             <!--  Android / Chrome  -->
+    <meta name="theme-color" content="#EE7624">
     <link rel="manifest" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/manifest.json", true) %>">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#EF7625">
+    
 
 </head>
 <body runat="server" id="body">

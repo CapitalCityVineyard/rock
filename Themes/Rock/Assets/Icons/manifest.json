@@ -3,6 +3,8 @@
     "display": "standalone",
     "orientation": "portrait-primary",
     "start_url": "http://rock.ccvine.org",
+    "background_color": "#EE7624",
+    "theme_color": "#EE7624",
     "icons": [
         {
             "src": "c.36.png",
@@ -25,7 +27,7 @@
         {
             "src": "c.96.png",
             "sizes": "96x96",
-            "type": "image\/png",
+            "type": "image/png",
             "density": "2.0"
         },
         {
