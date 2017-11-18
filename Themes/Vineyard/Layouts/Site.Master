@@ -41,12 +41,24 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
-    <!-- Icons -->
-    <link rel="shortcut icon" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/favicon.ico", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-ipad-retina.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-iphone-retina.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-ipad.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("~/Content/ExternalSite/Icons/touch-icon-iphone.png", true) %>"/>
+<!-- Icons -->
+    <link rel="shortcut icon" href="<%# ResolveRockUrl("/Themes/Vineyard/Assets/Icons/favicon.ico", true) %>"/>
+    
+<!--  Apple Touch Icons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%# ResolveRockUrl("/Themes/Vineyard/Assets/Icons/rs.144.png", true) %>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("/Themes/Vineyard/Assets/Icons/rs.114.png", true) %>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("/Themes/Vineyard/Assets/Icons/rs.72.png", true) %>"/>
+    <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("/Themes/Vineyard/Assets/Icons/rs.57.png", true) %>"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Capital City Vineyard Church">
+    
+ <!--  Android / Chrome -->
+    <link rel="manifest" href="<%# ResolveRockUrl("/Themes/Vineyard/Assets/Icons/manifest.json", true) %>">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#242B61">   
+
     <script>
         $(window).scroll(function() {
   if ($(document).scrollTop() > 80) {
