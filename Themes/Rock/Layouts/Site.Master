@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="Rock.Web.UI.RockMasterPage" %>
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Rock.Web.UI.RockMasterPage" %>
 <%@ Import Namespace="System.Web.Optimization" %>
 <!DOCTYPE html>
 
@@ -33,7 +33,6 @@
 <html class="no-js">
 <head runat="server">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <meta charset="utf-8">
     <title></title>
 
@@ -53,28 +52,23 @@
     <script src="<%# ResolveRockUrl("~/Scripts/modernizr.js" ) %>" ></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
-
-    <!-- Icons -->
+<!-- Icons -->
     <link rel="shortcut icon" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/favicon.ico", true) %>"/>
     
-    
+<!--  Apple Touch Icons -->
 
-            <!--  Apple Touch Icons  -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.144.png", true) %>"/>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.114.png", true) %>"/>
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.72.png", true) %>"/>
     <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.57.png", true) %>"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CCV Rock">
     
-
-            <!--  Android / Chrome  -->
-    <meta name="theme-color" content="#EE7624">
+ <!--  Android / Chrome -->
     <link rel="manifest" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/manifest.json", true) %>">
     <meta name="mobile-web-app-capable" content="yes">
-    
-
+    <!--<meta name="theme-color" content="#242B61"> -->
 </head>
 <body runat="server" id="body">
 

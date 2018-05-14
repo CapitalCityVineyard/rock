@@ -5,6 +5,7 @@
     "start_url": "http://rock.ccvine.org",
     "background_color": "#EE7624",
     "theme_color": "#EE7624",
+    "scope": "/rock.ccvine.org/",
     "icons": [
         {
             "src": "c.36.png",

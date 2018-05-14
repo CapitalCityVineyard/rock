@@ -63,6 +63,10 @@
                                             Help="The description of the page to include as a meta tag for the page" />
                                     </div>
                                 </div>
+
+                                <Rock:PanelWidget ID="wpPageAttributes" runat="server" Title="Page Attribute Values">
+                                    <Rock:DynamicPlaceholder ID="phPageAttributes" runat="server" ></Rock:DynamicPlaceholder>
+                                </Rock:PanelWidget>
                             </asp:Panel>
 
                             <asp:Panel ID="pnlDisplaySettings" runat="server" Visible="false">
@@ -85,10 +89,6 @@
                                     <Rock:RockCheckBox ID="cbBreadCrumbIcon" runat="server" Text="Show Icon in Breadcrumb" Help="Should this page's icon be displayed in the breadcrumb trail when viewing this page or a child page?" />
                                 </fieldset>
                             </asp:Panel>
-
-                            <Rock:PanelWidget ID="wpPageAttributes" runat="server" Title="Page Attribute Values">
-                                <asp:PlaceHolder ID="phPageAttributes" runat="server" EnableViewState="false"></asp:PlaceHolder>
-                            </Rock:PanelWidget>
 
                             <asp:Panel ID="pnlAdvancedSettings" runat="server" Visible="false">
                                 <div class="row">
@@ -198,8 +198,8 @@
                     </asp:PlaceHolder>
 
                     <asp:Panel ID="pnlEditModeActions" runat="server" CssClass="actions">
-                        <asp:LinkButton ID="btnSave" runat="server" AccessKey="s" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                        <asp:LinkButton ID="btnCancel" runat="server" AccessKey="c" Text="Cancel" CssClass="btn btn-link" CausesValidation="false" OnClick="btnCancel_Click" />
+                        <asp:LinkButton ID="btnSave" runat="server" AccessKey="s" ToolTip="Alt+s" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                        <asp:LinkButton ID="btnCancel" runat="server" AccessKey="c" ToolTip="Alt+c" Text="Cancel" CssClass="btn btn-link" CausesValidation="false" OnClick="btnCancel_Click" />
                     </asp:Panel>
                 </div>
 
@@ -220,28 +220,45 @@
                     </div>
 
                     <asp:Panel ID="pnlReadOnlyModeActions" runat="server" CssClass="actions">
-                        <asp:LinkButton ID="btnEdit" runat="server" AccessKey="m" Text="Edit" CssClass="btn btn-primary" OnClick="btnEdit_Click" />
+                        <asp:LinkButton ID="btnEdit" runat="server" AccessKey="m" ToolTip="Alt+m" Text="Edit" CssClass="btn btn-primary" OnClick="btnEdit_Click" />
                         <Rock:ModalAlert ID="mdDeleteWarning" runat="server" />
                         <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-link" OnClick="btnDelete_Click" />
                         <div class="pull-right">
-                            <asp:LinkButton ID="btnChildPageOrder" runat="server" ToolTip="Child Page Order" CssClass="btn btn-default btn-sm page-child-pages fa fa-sitemap" OnClick="btnChildPageOrder_Click" />
+                            <a title="Child Pages" class="btn btn-default btn-sm page-child-pages" runat="server" id="aChildPages"><i class="fa fa-sitemap"></i></a>
+                            <asp:LinkButton ID="btnCopy" runat="server" Tooltip="Copy Page" CssClass="btn btn-default btn-sm" OnClick="btnCopy_Click"><i class="fa fa-clone"></i></asp:LinkButton>
                             <Rock:SecurityButton ID="btnSecurity" runat="server" class="btn btn-sm btn-security" />
                         </div>
                     </asp:Panel>
                 </fieldset>
 
-                <Rock:ModalDialog ID="mdChildPageOrdering" runat="server" Title="Child Page Order" Visible="false" SaveButtonText="Done" OnSaveClick="mdChildPageOrdering_SaveClick" CancelLinkVisible="false">
+                <Rock:ModalDialog ID="mdCopyPage" runat="server" ValidationGroup="vgCopyPage" Title="Copy Page" OnSaveClick="mdCopyPage_SaveClick" SaveButtonText="Copy" Visible="false">
                     <Content>
-                        <Rock:Grid ID="gChildPageOrder" runat="server" OnGridReorder="gChildPageOrder_GridReorder" ShowActionRow="false" AllowPaging="false" >
-                            <Columns>
-                                <Rock:ReorderField />
-                                <Rock:RockBoundField DataField="InternalName" HeaderText="Name" />
-                                <Rock:RockBoundField DataField="Layout.Name" HeaderText="Layout"  />
-                            </Columns>
-                        </Rock:Grid>
+                        <Rock:RockCheckBox ID="cbCopyPageIncludeChildPages" runat="server" Text="Include Child Pages" Checked="true" />
                     </Content>
                 </Rock:ModalDialog>
+                
             </asp:Panel>
         </asp:Panel>
+        <script>
+            Sys.Application.add_load(function () {
+                $('#<%=tbPageName.ClientID%>').on('blur', function () {
+                    var isNewPage = $('#<%=hfPageId.ClientID%>').val() == '0';
+                    if (isNewPage) {
+                        // Default the Page Title and Browser Title to the Internal Name if this is a new page and they aren't filled in with anything yet
+                        var $tbPageName = $('#<%=tbPageName.ClientID%>');
+                        var $tbPageTitle = $('#<%=tbPageTitle.ClientID%>');
+                        var $tbBrowserTitle = $('#<%=tbBrowserTitle.ClientID%>');
+                        if ($tbPageTitle.val() == '') {
+                            $tbPageTitle.val($tbPageName.val());
+                        }
+
+                        if ($tbBrowserTitle.val() == '') {
+                            $tbBrowserTitle.val($tbPageName.val());
+                        }
+                    }
+                });
+                
+            });
+        </script>
     </ContentTemplate>
 </asp:UpdatePanel>
