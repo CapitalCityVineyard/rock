@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <views>
-  <mapping-views hash="b8e83f580268e0b19ae84a34b41849e91c5c90972f7936b18725532e11d21380" conceptual-container="RockContext" store-container="CodeFirstDatabase">
+  <mapping-views hash="b9a3199011407bf0d2b03a1f41ac6e863b4129128ba9926b4f714097bbc5723b" conceptual-container="RockContext" store-container="CodeFirstDatabase">
     <view extent="CodeFirstDatabase.AnalyticsDimAttendanceLocation"><![CDATA[
     SELECT VALUE -- Constructing AnalyticsDimAttendanceLocation
         [CodeFirstDatabaseSchema.AnalyticsDimAttendanceLocation](T1.AnalyticsDimAttendanceLocation_LocationId, T1.AnalyticsDimAttendanceLocation_Name, T1.AnalyticsDimAttendanceLocation_Street1, T1.AnalyticsDimAttendanceLocation_Street2, T1.AnalyticsDimAttendanceLocation_City, T1.AnalyticsDimAttendanceLocation_County, T1.AnalyticsDimAttendanceLocation_State, T1.AnalyticsDimAttendanceLocation_Country, T1.AnalyticsDimAttendanceLocation_PostalCode, T1.AnalyticsDimAttendanceLocation_GeoPoint, T1.AnalyticsDimAttendanceLocation_GeoFence, T1.AnalyticsDimAttendanceLocation_Latitude, T1.AnalyticsDimAttendanceLocation_Longitude, T1.AnalyticsDimAttendanceLocation_FullAddress, T1.AnalyticsDimAttendanceLocation_Count)

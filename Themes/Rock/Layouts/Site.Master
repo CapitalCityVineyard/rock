@@ -36,8 +36,10 @@
     <meta charset="utf-8">
     <title></title>
 
-    <script src="<%# ResolveRockUrl("~/Scripts/jquery-1.12.4.min.js" ) %>"></script>
+    <script src="<%# System.Web.Optimization.Scripts.Url("~/Scripts/Bundles/RockJQueryLatest") %>"></script>
     <script src="<%# ResolveRockUrl("~/Scripts/jquery.jquery-dotimeout.js" ) %>"></script>
+
+    
 
     <!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -52,23 +54,7 @@
     <script src="<%# ResolveRockUrl("~/Scripts/modernizr.js" ) %>" ></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
-<!-- Icons -->
-    <link rel="shortcut icon" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/favicon.ico", true) %>"/>
-    
-<!--  Apple Touch Icons -->
 
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.144.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.114.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.72.png", true) %>"/>
-    <link rel="apple-touch-icon-precomposed" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/rs.57.png", true) %>"/>
-    <meta name="apple-mobile-web-app-capable" content="no">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="CCV Rock">
-    
- <!--  Android / Chrome -->
-    <link rel="manifest" href="<%# ResolveRockUrl("/Themes/Rock/Assets/Icons/manifest.json", true) %>">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!--<meta name="theme-color" content="#242B61"> -->
 </head>
 <body runat="server" id="body">
 
