@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <views>
-  <mapping-views hash="b9a3199011407bf0d2b03a1f41ac6e863b4129128ba9926b4f714097bbc5723b" conceptual-container="RockContext" store-container="CodeFirstDatabase">
+  <mapping-views hash="4831322be1f156be5a7fdf8d18b7fef115cf7a0fd78d375a7419568bdc445b3f" conceptual-container="RockContext" store-container="CodeFirstDatabase">
     <view extent="CodeFirstDatabase.AnalyticsDimAttendanceLocation"><![CDATA[
     SELECT VALUE -- Constructing AnalyticsDimAttendanceLocation
         [CodeFirstDatabaseSchema.AnalyticsDimAttendanceLocation](T1.AnalyticsDimAttendanceLocation_LocationId, T1.AnalyticsDimAttendanceLocation_Name, T1.AnalyticsDimAttendanceLocation_Street1, T1.AnalyticsDimAttendanceLocation_Street2, T1.AnalyticsDimAttendanceLocation_City, T1.AnalyticsDimAttendanceLocation_County, T1.AnalyticsDimAttendanceLocation_State, T1.AnalyticsDimAttendanceLocation_Country, T1.AnalyticsDimAttendanceLocation_PostalCode, T1.AnalyticsDimAttendanceLocation_GeoPoint, T1.AnalyticsDimAttendanceLocation_GeoFence, T1.AnalyticsDimAttendanceLocation_Latitude, T1.AnalyticsDimAttendanceLocation_Longitude, T1.AnalyticsDimAttendanceLocation_FullAddress, T1.AnalyticsDimAttendanceLocation_Count)
@@ -6011,6 +6011,26 @@
             True AS _from0
         FROM RockContext.SurveyResult AS T
     ) AS T1]]></view>
+    <view extent="CodeFirstDatabase.SimpleDonationPerson"><![CDATA[
+    SELECT VALUE -- Constructing SimpleDonationPerson
+        [CodeFirstDatabaseSchema.SimpleDonationPerson](T1.SimpleDonationPerson_Id, T1.SimpleDonationPerson_PaymentMethodId, T1.SimpleDonationPerson_SimpleDonationPersonId, T1.SimpleDonationPerson_PersonAliasId, T1.SimpleDonationPerson_CreatedDateTime, T1.SimpleDonationPerson_ModifiedDateTime, T1.SimpleDonationPerson_CreatedByPersonAliasId, T1.SimpleDonationPerson_ModifiedByPersonAliasId, T1.SimpleDonationPerson_Guid, T1.SimpleDonationPerson_ForeignId, T1.SimpleDonationPerson_ForeignGuid, T1.SimpleDonationPerson_ForeignKey)
+    FROM (
+        SELECT 
+            T.Id AS SimpleDonationPerson_Id, 
+            T.PaymentMethodId AS SimpleDonationPerson_PaymentMethodId, 
+            T.SimpleDonationPersonId AS SimpleDonationPerson_SimpleDonationPersonId, 
+            T.PersonAliasId AS SimpleDonationPerson_PersonAliasId, 
+            T.CreatedDateTime AS SimpleDonationPerson_CreatedDateTime, 
+            T.ModifiedDateTime AS SimpleDonationPerson_ModifiedDateTime, 
+            T.CreatedByPersonAliasId AS SimpleDonationPerson_CreatedByPersonAliasId, 
+            T.ModifiedByPersonAliasId AS SimpleDonationPerson_ModifiedByPersonAliasId, 
+            T.Guid AS SimpleDonationPerson_Guid, 
+            T.ForeignId AS SimpleDonationPerson_ForeignId, 
+            T.ForeignGuid AS SimpleDonationPerson_ForeignGuid, 
+            T.ForeignKey AS SimpleDonationPerson_ForeignKey, 
+            True AS _from0
+        FROM RockContext.SimpleDonationPeople AS T
+    ) AS T1]]></view>
     <view extent="CodeFirstDatabase.DeviceLocation"><![CDATA[
     SELECT VALUE -- Constructing DeviceLocation
         [CodeFirstDatabaseSchema.DeviceLocation](T1.DeviceLocation_DeviceId, T1.DeviceLocation_LocationId)
@@ -10330,6 +10350,26 @@
             T.ForeignKey AS SurveyResult_ForeignKey, 
             True AS _from0
         FROM CodeFirstDatabase.SurveyResult AS T
+    ) AS T1]]></view>
+    <view extent="RockContext.SimpleDonationPeople"><![CDATA[
+    SELECT VALUE -- Constructing SimpleDonationPeople
+        [Rock.Data.SimpleDonationPerson](T1.SimpleDonationPerson_Id, T1.SimpleDonationPerson_PaymentMethodId, T1.SimpleDonationPerson_SimpleDonationPersonId, T1.SimpleDonationPerson_PersonAliasId, T1.SimpleDonationPerson_CreatedDateTime, T1.SimpleDonationPerson_ModifiedDateTime, T1.SimpleDonationPerson_CreatedByPersonAliasId, T1.SimpleDonationPerson_ModifiedByPersonAliasId, T1.SimpleDonationPerson_Guid, T1.SimpleDonationPerson_ForeignId, T1.SimpleDonationPerson_ForeignGuid, T1.SimpleDonationPerson_ForeignKey)
+    FROM (
+        SELECT 
+            T.Id AS SimpleDonationPerson_Id, 
+            T.PaymentMethodId AS SimpleDonationPerson_PaymentMethodId, 
+            T.SimpleDonationPersonId AS SimpleDonationPerson_SimpleDonationPersonId, 
+            T.PersonAliasId AS SimpleDonationPerson_PersonAliasId, 
+            T.CreatedDateTime AS SimpleDonationPerson_CreatedDateTime, 
+            T.ModifiedDateTime AS SimpleDonationPerson_ModifiedDateTime, 
+            T.CreatedByPersonAliasId AS SimpleDonationPerson_CreatedByPersonAliasId, 
+            T.ModifiedByPersonAliasId AS SimpleDonationPerson_ModifiedByPersonAliasId, 
+            T.Guid AS SimpleDonationPerson_Guid, 
+            T.ForeignId AS SimpleDonationPerson_ForeignId, 
+            T.ForeignGuid AS SimpleDonationPerson_ForeignGuid, 
+            T.ForeignKey AS SimpleDonationPerson_ForeignKey, 
+            True AS _from0
+        FROM CodeFirstDatabase.SimpleDonationPerson AS T
     ) AS T1]]></view>
     <view extent="RockContext.Device_Locations"><![CDATA[
     SELECT VALUE -- Constructing Device_Locations

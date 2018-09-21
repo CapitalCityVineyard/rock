@@ -1,0 +1,8 @@
+<?xml version="1.0 encoding="utf-8"?>
+<kiosk>
+    <home url="https://faithlife.com/ccvtech/signs/announcements">
+    <sidebar visible="false">
+    <backforward visible="false">
+    <timout seconds="0">
+    <inactive seconds="0">
+</kiosk>

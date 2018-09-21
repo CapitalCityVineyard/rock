@@ -4,6 +4,21 @@
         <name>Rock.StatementGenerator</name>
     </assembly>
     <members>
+        <member name="T:Rock.StatementGenerator.Migrations.StatementGeneratorMoreOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rock.StatementGenerator.Migrations.StatementGeneratorMoreOptions.Up">
+            <summary>
+            The commands to run to migrate plugin to the specific version
+            </summary>
+        </member>
+        <member name="M:Rock.StatementGenerator.Migrations.StatementGeneratorMoreOptions.Down">
+            <summary>
+            The commands to undo a migration from a specific version
+            </summary>
+        </member>
         <member name="T:Rock.StatementGenerator.Migrations.StatementGeneratorUpdateTemplates">
             <summary>
             
@@ -395,7 +410,7 @@
         <member name="P:Rock.StatementGenerator.StatementGeneratorRecipient.LocationGuid">
             <summary>
             Gets or sets the location identifier.
-            This is the Mailiing Address that the statement should be sent to
+            This is the Mailing Address that the statement should be sent to
             </summary>
             <value>
             The location identifier.
@@ -637,6 +652,11 @@
         <member name="F:Rock.StatementGenerator.SystemGuid.Attribute.DEFINEDVALUE_STATEMENT_GENERATOR_LAVA_TEMPLATE_FOOTERHTML">
             <summary>
             The definedvalue statement generator lava template footerhtml
+            </summary>
+        </member>
+        <member name="F:Rock.StatementGenerator.SystemGuid.Attribute.DEFINEDVALUE_STATEMENT_GENERATOR_LAVA_TEMPLATE_PDFOBJECTSETTINGS">
+            <summary>
+            The definedvalue statement generator lava template PDF Object Settings
             </summary>
         </member>
         <member name="T:Rock.StatementGenerator.SystemGuid.DefinedType">

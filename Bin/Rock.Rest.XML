@@ -218,6 +218,26 @@
             Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.AnalyticsSourceCampusController"/> class.
             </summary>
         </member>
+        <member name="T:Rock.Rest.Controllers.AttendanceOccurrencesController">
+            <summary>
+            AttendanceOccurrences REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.AttendanceOccurrencesController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.AttendanceOccurrencesController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.AttributeValueHistoricalsController">
+            <summary>
+            AttributeValueHistoricals REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.AttributeValueHistoricalsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.AttributeValueHistoricalsController"/> class.
+            </summary>
+        </member>
         <member name="T:Rock.Rest.Controllers.CommunicationTemplateAttachmentsController">
             <summary>
             CommunicationTemplateAttachments REST API
@@ -226,6 +246,118 @@
         <member name="M:Rock.Rest.Controllers.CommunicationTemplateAttachmentsController.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.CommunicationTemplateAttachmentsController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.ContentChannelItemSlugsController">
+            <summary>
+            ContentChannelItemSlugs REST API
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.ContentChannelItemSlugsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.ContentChannelItemSlugsController"/> class.
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.ContentChannelItemSlugsController.SaveContentSlug(System.Int32,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Posts the content slug.
+            </summary>
+            <param name="contentChannelItemId">The content channel item identifier.</param>
+            <param name="slug">The slug.</param>
+            <param name="contentChannelItemSlugId">The content channel item slug identifier.</param>
+        </member>
+        <member name="M:Rock.Rest.Controllers.ContentChannelItemSlugsController.GetUniqueContentSlug(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Gets the unique slug.
+            </summary>
+            <param name="slug">The slug.</param>
+            <param name="contentChannelItemSlugId">The content channel item slug identifier.</param>
+        </member>
+        <member name="T:Rock.Rest.Controllers.ContentChannelItemSlugsController.SaveSlugResponse">
+            <summary>
+            Return object of the SaveContentSlug action
+            </summary>
+        </member>
+        <member name="P:Rock.Rest.Controllers.ContentChannelItemSlugsController.SaveSlugResponse.Slug">
+            <summary>
+            Gets or sets the slug.
+            </summary>
+            <value>
+            The slug.
+            </value>
+        </member>
+        <member name="P:Rock.Rest.Controllers.ContentChannelItemSlugsController.SaveSlugResponse.Id">
+            <summary>
+            Gets or sets the Id.
+            </summary>
+            <value>
+            The Id.
+            </value>
+        </member>
+        <member name="T:Rock.Rest.Controllers.GroupHistoricalsController">
+            <summary>
+            GroupHistoricals REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.GroupHistoricalsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.GroupHistoricalsController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.GroupLocationHistoricalSchedulesController">
+            <summary>
+            GroupLocationHistoricalSchedules REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.GroupLocationHistoricalSchedulesController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.GroupLocationHistoricalSchedulesController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.GroupLocationHistoricalsController">
+            <summary>
+            GroupLocationHistoricals REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.GroupLocationHistoricalsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.GroupLocationHistoricalsController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.GroupMemberHistoricalsController">
+            <summary>
+            GroupMemberHistoricals REST API
+            </summary>
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.GroupMemberHistoricalsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.GroupMemberHistoricalsController"/> class.
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.GroupMemberHistoricalsController.GetGroupHistoricalSummary(System.Int32,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Gets a summary of a person's membership in groups that have group history enabled
+            </summary>
+            <param name="personId">The person identifier.</param>
+            <param name="startDateTime">The start date time.</param>
+            <param name="stopDateTime">The stop date time.</param>
+            <param name="groupTypeIds">The comma-delimited list of group type ids (leave blank for all)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rock.Rest.Controllers.GroupSyncsController">
+            <summary>
+            GroupSyncs REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.GroupSyncsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.GroupSyncsController"/> class.
             </summary>
         </member>
         <member name="T:Rock.Rest.Controllers.LavaShortcodesController">
@@ -288,6 +420,46 @@
             Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.MetaPersonicxLifestageGroupsController"/> class.
             </summary>
         </member>
+        <member name="T:Rock.Rest.Controllers.NoteWatchesController">
+            <summary>
+            NoteWatches REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.NoteWatchesController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.NoteWatchesController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.PersonSearchKeysController">
+            <summary>
+            PersonSearchKeys REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.PersonSearchKeysController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.PersonSearchKeysController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.PersonSignalsController">
+            <summary>
+            PersonSignals REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.PersonSignalsController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.PersonSignalsController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.SignalTypesController">
+            <summary>
+            SignalTypes REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.SignalTypesController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.SignalTypesController"/> class.
+            </summary>
+        </member>
         <member name="T:Rock.Rest.Controllers.NcoaHistoriesController">
             <summary>
             NcoaHistories REST API
@@ -316,6 +488,26 @@
         <member name="M:Rock.Rest.Controllers.PersonTokensController.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.PersonTokensController"/> class.
+            </summary>
+        </member>
+        <member name="T:Rock.Rest.Controllers.NotesController">
+            <summary>
+            
+            </summary>
+            <summary>
+            Notes REST API
+            </summary>
+        </member>
+        <member name="M:Rock.Rest.Controllers.NotesController.GetNoteEditData(System.Int32)">
+            <summary>
+            Returns Note depending on if the current person has rights to edit that note
+            </summary>
+            <param name="noteId">The note identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rock.Rest.Controllers.NotesController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.NotesController"/> class.
             </summary>
         </member>
         <member name="T:Rock.Rest.Controllers.PbxController">
@@ -417,6 +609,14 @@
             </summary>
             <value>
             The duration.
+            </value>
+        </member>
+        <member name="P:Rock.Rest.Controllers.PresenceController.Presence.SessionId">
+            <summary>
+            Gets or sets the session identifier.
+            </summary>
+            <value>
+            The session identifier.
             </value>
         </member>
         <member name="T:Rock.Rest.Controllers.PresenceController.MACPresence">
@@ -521,12 +721,12 @@
         </member>
         <member name="M:Rock.Rest.Controllers.AttributesController.Flush(System.Int32)">
             <summary>
-            Flushes an attributes from cache.
+            Flushes an attributes from cache. Usually no need to do this since attribute cache is managed automatically.
             </summary>
         </member>
         <member name="M:Rock.Rest.Controllers.AttributesController.Flush">
             <summary>
-            Flushes all global attributes from cache.
+            Flushes all global attributes from cache. Usually no need to do this since global attribute cache is managed automatically.
             </summary>
         </member>
         <member name="M:Rock.Rest.Controllers.AttributesController.Post(Rock.Model.Attribute)">
@@ -564,30 +764,6 @@
             Use this to Login a user and return an AuthCookie which can be used in subsequent REST calls
             </summary>
             <param name="loginParameters">The login parameters.</param>
-            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
-        </member>
-        <member name="M:Rock.Rest.Controllers.AuthController.FacebookLogin(Rock.Security.ExternalAuthentication.Facebook.FacebookUser)">
-            <summary>
-            Use this to Login a user and return an AuthCookie which can be used in subsequent REST calls
-            </summary>
-            <param name="facebookUser">The facebook user.</param>
-            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
-            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
-        </member>
-        <member name="M:Rock.Rest.Controllers.AuthController.GoogleLogin(Rock.Security.ExternalAuthentication.Google.GoogleUser)">
-            <summary>
-            Use this to Login a user and return an AuthCookie which can be used in subsequent REST calls
-            </summary>
-            <param name="googleUser">The google user.</param>
-            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
-            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
-        </member>
-        <member name="M:Rock.Rest.Controllers.AuthController.TwitterLogin(Rock.Security.ExternalAuthentication.Twitter.TwitterUser)">
-            <summary>
-            Use this to Login a user and return an AuthCookie which can be used in subsequent REST calls
-            </summary>
-            <param name="twitterUser">The twitter user.</param>
-            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
             <exception cref="T:System.Web.Http.HttpResponseException"></exception>
         </member>
         <member name="T:Rock.Rest.Controllers.BinaryFilesController">
@@ -941,14 +1117,14 @@
             Categories REST API
             </summary>
         </member>
-        <member name="M:Rock.Rest.Controllers.CategoriesController.GetChildren(System.Int32,System.Int32,System.Boolean,System.Int32,System.String,System.String,System.Boolean,System.Boolean,System.String,System.String,System.String,System.Boolean)">
+        <member name="M:Rock.Rest.Controllers.CategoriesController.GetChildren(System.Int32,System.Int32,System.Boolean,System.Int32,System.String,System.String,System.Boolean,System.Boolean,System.String,System.String,System.String,System.Boolean,System.String,System.String)">
             <summary>
             Gets the children.
             </summary>
             <param name="id">The identifier.</param>
             <param name="rootCategoryId">The root category identifier.</param>
             <param name="getCategorizedItems">if set to <c>true</c> [get categorized items].</param>
-            <param name="entityTypeId">The entity type identifier.</param>
+            <param name="entityTypeId">The entity type for the Categorys</param>
             <param name="entityQualifier">The entity qualifier.</param>
             <param name="entityQualifierValue">The entity qualifier value.</param>
             <param name="showUnnamedEntityItems">if set to <c>true</c> [show unnamed entity items].</param>
@@ -957,9 +1133,11 @@
             <param name="excludedCategoryIds">The excluded category ids.</param>
             <param name="defaultIconCssClass">The default icon CSS class.</param>
             <param name="includeInactiveItems">if set to <c>true</c> [include inactive items].</param>
+            <param name="itemFilterPropertyName">(Advanced) Property to FilterBy on the Item Query</param>
+            <param name="itemFilterPropertyValue">(Advanced) Property Value to FilterBy on the Item Query</param>
             <returns></returns>
         </member>
-        <member name="M:Rock.Rest.Controllers.CategoriesController.GetCategorizedItems(Rock.Data.IService,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Rock.Rest.Controllers.CategoriesController.GetCategorizedItems(Rock.Data.IService,System.Int32,System.Boolean,System.Boolean,System.String,System.String)">
             <summary>
             Gets the categorized items.
             </summary>
@@ -967,6 +1145,8 @@
             <param name="categoryId">The category id.</param>
             <param name="showUnnamedEntityItems">if set to <c>true</c> [show unnamed entity items].</param>
             <param name="excludeInactiveItems">if set to <c>true</c> [exclude inactive items].</param>
+            <param name="itemFilterPropertyName">(Advanced) Property to FilterBy on the Item Query</param>
+            <param name="itemFilterPropertyValue">(Advanced) Property Value to FilterBy on the Item Query</param>
             <returns></returns>
         </member>
         <member name="M:Rock.Rest.Controllers.CategoriesController.#ctor">
@@ -986,6 +1166,14 @@
             <value>
             <c>true</c> if this instance is category; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="M:Rock.Rest.Controllers.CategoryItem.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
         </member>
         <member name="T:Rock.Rest.Controllers.AttendanceCodesController">
             <summary>
@@ -1709,6 +1897,14 @@
             <param name="financialTransactionScannedCheck">The financial transaction scanned check.</param>
             <returns></returns>
         </member>
+        <member name="M:Rock.Rest.Controllers.FinancialTransactionsController.Refund(System.Int32)">
+            <summary>
+            Process the Refund.
+            </summary>
+            <param name="transactionId">The transaction identifier.</param>
+            <returns></returns>
+            <exception cref="T:System.Web.Http.HttpResponseException"></exception>
+        </member>
         <member name="M:Rock.Rest.Controllers.FinancialTransactionsController.Post(Rock.Model.FinancialTransaction)">
             <summary>
             Posts the specified value.
@@ -2004,7 +2200,7 @@
             Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.GroupsController"/> class.
             </summary>
         </member>
-        <member name="M:Rock.Rest.Controllers.GroupsController.GetChildren(System.Int32,System.Int32,System.Boolean,System.String,System.String,System.Boolean,Rock.Web.UI.Controls.TreeViewItem.GetCountsType,System.Int32,System.Boolean)">
+        <member name="M:Rock.Rest.Controllers.GroupsController.GetChildren(System.Int32,System.Int32,System.Boolean,System.String,System.String,System.Boolean,Rock.Web.UI.Controls.TreeViewItem.GetCountsType,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Gets the children.
             </summary>
@@ -2017,6 +2213,7 @@
             <param name="countsType">Type of the counts.</param>
             <param name="campusId">if set it will filter groups based on campus</param>
             <param name="includeNoCampus">if campus set and set to <c>true</c> [include groups with no campus].</param>
+            <param name="limitToPublic">if set to <c>true</c> [limit to public groups].</param>
             <returns></returns>
         </member>
         <member name="M:Rock.Rest.Controllers.GroupsController.GetFamilies(System.Int32)">
@@ -2137,11 +2334,12 @@
             <param name="includeDescendants">if set to <c>true</c> [include descendants].</param>
             <returns></returns>
         </member>
-        <member name="M:Rock.Rest.Controllers.GroupsController.GetMemberMapInfo(System.Int32)">
+        <member name="M:Rock.Rest.Controllers.GroupsController.GetMemberMapInfo(System.Int32,System.Nullable{Rock.Model.GroupMemberStatus})">
             <summary>
             Gets the member map information.
             </summary>
             <param name="groupId">The group identifier.</param>
+            <param name="groupMemberStatus">The group member status.</param>
             <returns></returns>
             <exception cref="T:System.Web.Http.HttpResponseException">
             </exception>
@@ -2686,16 +2884,6 @@
             <param name="metricValuePartitionEntityIdList">The metric value partition entity identifier list.</param>
             <returns></returns>
         </member>
-        <member name="T:Rock.Rest.Controllers.NotesController">
-            <summary>
-            Notes REST API
-            </summary>
-        </member>
-        <member name="M:Rock.Rest.Controllers.NotesController.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Rock.Rest.Controllers.NotesController"/> class.
-            </summary>
-        </member>
         <member name="T:Rock.Rest.Controllers.NoteTypesController">
             <summary>
             NoteTypes REST API
@@ -2945,7 +3133,7 @@
             <summary>
             Gets the search details (for the person picker)
             </summary>
-            <param name="Id">The identifier.</param>
+            <param name="id">The identifier.</param>
             <returns></returns>
         </member>
         <member name="M:Rock.Rest.Controllers.PeopleController.SearchWithDetails(System.Linq.IQueryable{Rock.Model.Person},System.Boolean)">
@@ -3064,6 +3252,13 @@
             </summary>
             <param name="personId">The person id.</param>
             <param name="siteId">The site identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rock.Rest.Controllers.PersonBadgesController.GetPersonalDevicesNumber(System.Int32)">
+            <summary>
+            Gets the Total number of personal devices
+            </summary>
+            <param name="personId">The person id.</param>
             <returns></returns>
         </member>
         <member name="M:Rock.Rest.Controllers.PersonBadgesController.GetFamilyAttendance(System.Int32,System.Int32)">
