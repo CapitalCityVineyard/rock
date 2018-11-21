@@ -5,13 +5,16 @@ using System.Linq;
 
 using Newtonsoft.Json;
 using Rock;
+using Rock.Attribute;
 using Rock.Data;
 using Rock.Lava;
 using Rock.Model;
 using Rock.Security;
 using Rock.Web.Cache;
 using Rock.Web.UI;
+using Rock.Web.UI.Controls;
 
+using com.shepherdchurch.SurveySystem.Attribute;
 using com.shepherdchurch.SurveySystem.Model;
 
 namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
@@ -19,6 +22,9 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
     [DisplayName( "Survey Entry" )]
     [Category( "Shepherd Church > Survey System" )]
     [Description( "Displays a survey for the user to enter results into." )]
+    [BooleanField( "Set Page Title", "If Yes then the page title is updated to reflect the Survey being taken.", true, order: 0 )]
+    [TextField( "Page Title Template", "If Set Page Title is enabled, then this field is used to set the page title. If blank the Survey name is used. <span class='tip tip-lava'></span>", false, order: 1 )]
+    [SurveyField( "Default Survey", "If set and no survey is specified in the URL then this survey will be used.", false, "", order: 2 )]
     public partial class SurveyEntry : RockBlock
     {
         #region Base Method Overrides
@@ -45,13 +51,13 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
         {
             if ( !IsPostBack )
             {
-                ShowDetail( PageParameter( "SurveyId" ).AsInteger() );
+                ShowDetail();
             }
             else
             {
                 if ( pnlDetails.Visible )
                 {
-                    var surveyResult = new SurveyResult { Id = 0, SurveyId = PageParameter( "SurveyId" ).AsInteger() };
+                    var surveyResult = new SurveyResult { Id = 0, SurveyId = GetSurveyId().Value };
 
                     surveyResult.LoadAttributes();
 
@@ -63,6 +69,38 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
         #endregion
 
         #region Core Methods
+
+        /// <summary>
+        /// Gets the survey identifier.
+        /// </summary>
+        /// <returns></returns>
+        protected int? GetSurveyId()
+        {
+            int? surveyId = PageParameter( "SurveyId" ).AsIntegerOrNull();
+
+            if ( !surveyId.HasValue )
+            {
+                var guid = GetAttributeValue( "DefaultSurvey" ).AsGuidOrNull();
+                var survey = new SurveyService( new RockContext() ).Get( guid ?? Guid.Empty );
+
+                if ( survey != null )
+                {
+                    surveyId = survey.Id;
+                }
+            }
+
+            return surveyId;
+        }
+
+        /// <summary>
+        /// Shows the details of the specified or default survey.
+        /// </summary>
+        protected void ShowDetail()
+        {
+            int? surveyId = GetSurveyId();
+
+            ShowDetail( surveyId ?? 0 );
+        }
 
         /// <summary>
         /// Show the details of the given survey for the user to enter information into.
@@ -83,6 +121,8 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
 
                 return;
             }
+
+            nbUnauthorized.Text = string.Empty;
 
             //
             // Check if an active login is required for this survey.
@@ -124,7 +164,32 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
 
             surveyResult.LoadAttributes( rockContext );
 
+            phAttributes.Controls.Clear();
             Rock.Attribute.Helper.AddEditControls( surveyResult, phAttributes, true, BlockValidationGroup );
+
+            //
+            // Update the Page Title if requested.
+            //
+            if ( GetAttributeValue( "SetPageTitle" ).AsBoolean( true ) )
+            {
+                string pageTitle;
+
+                if ( string.IsNullOrWhiteSpace( GetAttributeValue( "PageTitleTemplate" ) ) )
+                {
+                    pageTitle = survey.Name;
+                }
+                else
+                {
+                    var mergeFields = LavaHelper.GetCommonMergeFields( RockPage );
+                    mergeFields.Add( "Survey", survey );
+
+                    pageTitle = GetAttributeValue( "PageTitleTemplate" ).ResolveMergeFields( mergeFields );
+                }
+
+                RockPage.PageTitle = pageTitle;
+                RockPage.BrowserTitle = String.Format( "{0} | {1}", pageTitle, RockPage.Site.Name );
+                RockPage.Header.Title = String.Format( "{0} | {1}", pageTitle, RockPage.Site.Name );
+            }
         }
 
         #endregion
@@ -138,12 +203,7 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Block_BlockUpdated( object sender, EventArgs e )
         {
-            int surveyId = PageParameter( "SurveyId" ).AsInteger();
-
-            if ( surveyId != 0 )
-            {
-                ShowDetail( surveyId );
-            }
+            ShowDetail();
         }
 
         /// <summary>
@@ -154,7 +214,7 @@ namespace RockWeb.Plugins.com_shepherdchurch.SurveySystem
         protected void btnSubmit_Click( object sender, EventArgs e )
         {
             var rockContext = new RockContext();
-            var survey = new SurveyService( rockContext ).Get( PageParameter( "SurveyId" ).AsInteger() );
+            var survey = new SurveyService( rockContext ).Get( GetSurveyId().Value );
             var surveyResultService = new SurveyResultService( rockContext );
             var surveyResult = new SurveyResult { Id = 0, SurveyId = survey.Id };
             var mergeFields = LavaHelper.GetCommonMergeFields( RockPage, CurrentPerson );

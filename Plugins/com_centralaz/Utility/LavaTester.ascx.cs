@@ -39,6 +39,7 @@ namespace RockWeb.Plugins.com_centralaz.Utility
     [DisplayName( "Lava Tester" )]
     [Category( "com_centralaz > Utility" )]
     [Description( "Allows you to pick a person, group, workflow instance, or registration entity and test your lava." )]
+    [LavaCommandsField( "Enabled Lava Commands", "The Lava commands that should be enabled.", false, order: 0 )]
     public partial class LavaTester : Rock.Web.UI.RockBlock
     {
         #region Fields
@@ -52,11 +53,12 @@ namespace RockWeb.Plugins.com_centralaz.Utility
         private readonly string _USER_PREF_REGISTRATION = "MyLavaTest:Registration";
         private readonly string _USER_PREF_WORKFLOWTYPE = "MyLavaTest:WorkflowTYPE";
         private readonly string _USER_PREF_WORKFLOW = "MyLavaTest:Workflow";
+        private readonly string _USER_PREF_WORKFLOW_ACTIVITY = "MyLavaTest:WorkflowActivity";
         private readonly string _USER_PREF_EDITORHEIGHT = "MyLavaTestEditorHeight";
         private readonly string _EMPTY_SAVED_SLOT = "empty saved slot";
         private readonly string _TEXT_MUTED = "text-muted";
 
-        private readonly int MAX_SAVE_SLOTS = 10;
+        private readonly int MAX_SAVE_SLOTS = 25;
         #endregion
 
         #region Properties
@@ -91,13 +93,13 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                 }
                 ceLava.Text = text;
 
-
                 // Set up the Merge Fields
                 ceLava.MergeFields.Clear();
 
                 ceLava.MergeFields.Add( "Person^Rock.Model.Person|Selected \"Person\"" );
                 ceLava.MergeFields.Add( "Group^Rock.Model.Group|Selected \"Group\"" );
                 ceLava.MergeFields.Add( "Workflow^Rock.Model.Workflow|Selected \"Workflow\"" );
+                ceLava.MergeFields.Add( "Activity^Rock.Model.WorkflowActivity|Selected \"Activity\"" );
                 ceLava.MergeFields.Add( "Registration^Rock.Model.Registration|Selected \"Registration\"" );
 
                 ceLava.MergeFields.Add( "GlobalAttribute" );
@@ -171,9 +173,27 @@ namespace RockWeb.Plugins.com_centralaz.Utility
             }
             else
             {
-                item.Text = ceLava.Text.TrimStart().Truncate( 100 );
+                string title = ceLava.Text.TrimStart();
+
+                SetSavedSlotItemName( item, title );
+
                 RemoveCssClass( item, _TEXT_MUTED );
                 SetUserPreference( string.Format( "{0}:{1}", _USER_PREF_KEY, item.Value ), ceLava.Text );
+            }
+        }
+
+        private static void SetSavedSlotItemName( ListItem item, string title )
+        {
+            string commentPattern = @"<!--(.*)-->";
+            Regex r = new Regex( commentPattern, RegexOptions.IgnoreCase );
+            Match m = r.Match( title );
+            if ( m.Success )
+            {
+                item.Text = m.Groups[1].Value;
+            }
+            else
+            {
+                item.Text = title.Truncate( 150 );
             }
         }
 
@@ -222,13 +242,13 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                 {
                     AddCssClass( ddlSaveSlot.Items[i], _TEXT_MUTED );
                     savedLava = string.Format( "{0} {1}", _EMPTY_SAVED_SLOT, i+1 );
+                    ddlSaveSlot.Items[i].Text = savedLava;
                 }
                 else
                 {
-                    savedLava = savedLava.TrimStart().Truncate( 100 );
+                    SetSavedSlotItemName( ddlSaveSlot.Items[i], savedLava.TrimStart() );
                 }
 
-                ddlSaveSlot.Items[i].Text = savedLava;
             }
 
             using ( var rockContext = new RockContext() )
@@ -251,6 +271,13 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                 {
                     wfpWorkflowType.SetValue( workflowTypeId );
                     BindWorkflowsUsingWorkflowType( workflowTypeId, setUserPreference: false );
+                }
+
+                var workflowId = GetUserPreference( _USER_PREF_WORKFLOW ).AsIntegerOrNull();
+                if ( workflowId != null )
+                {
+                    ddlWorkflows.SetValue( workflowId );
+                    BindWorkflowActivitiesUsingWorkflowInstance( workflowId, setUserPreference: false );
                 }
 
                 var registrationInstanceId = GetUserPreference( _USER_PREF_REGISTRATION_INSTANCE ).AsIntegerOrNull();
@@ -340,6 +367,20 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                         }
                     }
 
+                    if ( ddlWorkflowActivities != null && ddlWorkflowActivities.Items.Count > 0 && ddlWorkflowActivities.SelectedValueAsInt().HasValue )
+                    {
+                        var workflowActivityService = new WorkflowActivityService( rockContext );
+                        if ( mergeFields.ContainsKey( "Activity" ) )
+                        {
+                            mergeFields.Remove( "Activity" );
+                        }
+
+                        if ( ddlWorkflowActivities.SelectedValueAsInt() != null )
+                        {
+                            mergeFields.Add( "Activity", workflowActivityService.Get( ddlWorkflowActivities.SelectedValueAsInt() ?? -1 ) );
+                        }
+                    }
+
                     if ( ddlRegistrations != null && ddlRegistrations.Items.Count > 0 && ddlRegistrations.SelectedValueAsInt().HasValue )
                     {
                         if ( mergeFields.ContainsKey( "RegistrationInstance" ) )
@@ -387,16 +428,70 @@ namespace RockWeb.Plugins.com_centralaz.Utility
             {
                 SetUserPreference( _USER_PREF_WORKFLOWTYPE, workflowTypeId.Value.ToStringSafe() );
                 BindWorkflowsUsingWorkflowType( workflowTypeId.Value, setUserPreference: true );
+                BindWorkflowActivitiesUsingWorkflowInstance( ddlWorkflows.SelectedValueAsInt() ?? -1, setUserPreference: true );
             }
             else
             {
                 ddlWorkflows.SetValue( "-1" );
                 ddlWorkflows.SelectedIndex = -1;
-                ddlWorkflows.Visible = false;
                 ddlWorkflows.Items.Clear();
+                ddlWorkflows.Visible = false;
+
+                ddlWorkflowActivities.SetValue( "-1" );
+                ddlWorkflowActivities.SelectedIndex = -1;
+                ddlWorkflowActivities.Items.Clear();
+                ddlWorkflowActivities.Visible = false;
+
                 SetUserPreference( _USER_PREF_WORKFLOWTYPE, string.Empty );
                 SetUserPreference( _USER_PREF_WORKFLOW, string.Empty );
+                SetUserPreference( _USER_PREF_WORKFLOW_ACTIVITY, string.Empty );
             }
+
+            litOutput.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the ddlWorkflows control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected void ddlWorkflows_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            int? workflowId = ddlWorkflows.SelectedValueAsInt();
+            if ( workflowId.HasValue )
+            {
+                RockContext rockContext = new RockContext();
+                WorkflowService workflowService = new WorkflowService( rockContext );
+                mergeFields.Add( "Workflow", workflowService.Get( ddlWorkflows.SelectedValueAsInt() ?? -1 ) );
+
+                SetUserPreference( _USER_PREF_WORKFLOW, ddlWorkflows.SelectedValue );
+                BindWorkflowActivitiesUsingWorkflowInstance( workflowId, setUserPreference: true );
+            }
+            else
+            {
+                ddlWorkflowActivities.SetValue( "-1" );
+                ddlWorkflowActivities.SelectedIndex = -1;
+                ddlWorkflowActivities.Visible = false;
+                ddlWorkflowActivities.Items.Clear();
+                SetUserPreference( _USER_PREF_WORKFLOWTYPE, string.Empty );
+                SetUserPreference( _USER_PREF_WORKFLOW, string.Empty );
+                SetUserPreference( _USER_PREF_WORKFLOW_ACTIVITY, string.Empty );
+            }
+
+            litOutput.Text = string.Empty;
+        }
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the ddlWorkflowActivities control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected void ddlWorkflowActivities_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            RockContext rockContext = new RockContext();
+            WorkflowActivityService workflowActivityService = new WorkflowActivityService( rockContext );
+            mergeFields.Remove( "Activity" );
+            mergeFields.Add( "Activity", workflowActivityService.Get( ddlWorkflowActivities.SelectedValueAsInt() ?? -1 ) );
+            SetUserPreference( _USER_PREF_WORKFLOW_ACTIVITY, ddlWorkflowActivities.SelectedValue );
 
             litOutput.Text = string.Empty;
         }
@@ -410,10 +505,32 @@ namespace RockWeb.Plugins.com_centralaz.Utility
             {
                 WorkflowService workflowService = new WorkflowService( rockContext );
 
-                var workflows = workflowService.Queryable().AsNoTracking().Where( w => w.WorkflowTypeId == workflowTypeId.Value ).ToList();
-                ddlWorkflows.DataSource = workflows;
+                var workflows = workflowService.Queryable().AsNoTracking()
+                    .Where( w => w.WorkflowTypeId == workflowTypeId.Value && ( w.CompletedDateTime == null || cbIncludeInactive.Checked ) ).ToList();
+
+                var list = workflows.Select( a => new
+                {
+                    Id = a.Id,
+                    Name = string.Format( "{0} {1}", a.Name, a.CompletedDateTime != null ? a.CompletedDateTime.Value.ToString( "(MM/dd/yy hh:mm tt)" ) : "" ),
+                    CompletedDateTime = a.CompletedDateTime,
+                    IsActive = a.IsActive
+                } );
+                ddlWorkflows.DataSource = list;
                 ddlWorkflows.DataBind();
+
+                // Style each inactive/complete workflow instance using text-muted
+                foreach ( var item in ddlWorkflows.Items )
+                {
+                    var listItem = ( ListItem ) item;
+                    var x = listItem.Value.AsInteger();
+                    if ( list.Any( a => x == a.Id && !a.IsActive ) )
+                    {
+                        AddCssClass( listItem, _TEXT_MUTED );
+                    }
+                }
+
                 ddlWorkflows.Visible = true;
+                ddlWorkflowActivities.Visible = true;
 
                 if ( workflows.Count > 0 )
                 {
@@ -432,7 +549,64 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                         }
                     }
 
-                    //ResolveLava();
+                    litOutput.Text = string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Binds the WF Activities of the workflows using workflow (instance).
+        /// </summary>
+        private void BindWorkflowActivitiesUsingWorkflowInstance( int? workflowId, bool setUserPreference )
+        {
+            using ( var rockContext = new RockContext() )
+            {
+                var workflowActivityService = new WorkflowActivityService( rockContext );
+
+                var list = workflowActivityService.Queryable().AsNoTracking().Where( a => a.WorkflowId == workflowId.Value ).ToList();
+
+                ddlWorkflowActivities.DataSource = list.Select( a => new
+                {
+                    Id = a.Id,
+                    ActivityTypeName = a.ActivityType.Name,
+                    Name = string.Format( "{0} {1}", a.ActivityType.Name, a.CompletedDateTime != null ? a.CompletedDateTime.Value.ToString("(MM/dd/yy hh:mm tt)") : "" ),
+                    ActivityTypeId = a.ActivityTypeId,
+                    CompletedDateTime = a.CompletedDateTime,
+                    IsActive = a.IsActive
+                } );
+
+                ddlWorkflowActivities.DataBind();
+
+                Regex re = new Regex(@"\(\d\d/\d\d/\d\d \d\d:\d\d");
+                foreach ( ListItem item in ddlWorkflowActivities.Items )
+                {
+                    if ( re.IsMatch( item.Text ) )
+                    {
+                        item.Attributes.CssStyle.Add( "color", "#aaa" );
+                    }
+                }
+
+                ddlWorkflowActivities.Visible = true;
+
+                if ( list.Count > 0 )
+                {
+                    if ( setUserPreference )
+                    {
+                        SetUserPreference( _USER_PREF_WORKFLOW_ACTIVITY, list[0].Id.ToStringSafe() );
+                        mergeFields.Remove( "Activity" );
+                        mergeFields.Add( "Activity", list[0] );
+                    }
+                    else
+                    {
+                        var activityId = GetUserPreference( _USER_PREF_WORKFLOW_ACTIVITY ).AsIntegerOrNull();
+                        if ( activityId != null )
+                        {
+                            ddlWorkflowActivities.SetValue( activityId );
+                            mergeFields.Remove( "Activity" );
+                            mergeFields.Add( "Activity", list.Where( a => a.Id == activityId ).FirstOrDefault() );
+                        }
+                    }
+
                     litOutput.Text = string.Empty;
                 }
             }
@@ -461,8 +635,6 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                 SetUserPreference( _USER_PREF_REGISTRATION, string.Empty );
                 mergeFields.Remove( "RegistrationInstance" );
                 mergeFields.Remove( "Registration" );
-
-                //ResolveLava();
             }
 
             litOutput.Text = string.Empty;
@@ -478,7 +650,7 @@ namespace RockWeb.Plugins.com_centralaz.Utility
         {
             RegistrationInstanceService registrationInstanceService = new RegistrationInstanceService( rockContext );
 
-            var registrationInstances = registrationInstanceService.Queryable().AsNoTracking().ToList();
+            var registrationInstances = registrationInstanceService.Queryable().AsNoTracking().Where( r => r.IsActive == true ).ToList();
             ddlRegistrationInstances.DataSource = registrationInstances;
             RegistrationInstance emptyRegistrationInstance = new RegistrationInstance { Id = -1, Name = "" };
             registrationInstances.Insert( 0, emptyRegistrationInstance );
@@ -510,10 +682,17 @@ namespace RockWeb.Plugins.com_centralaz.Utility
             {
                 RegistrationService registrationService = new RegistrationService( rockContext );
 
-                var registrations = registrationService.Queryable().AsNoTracking().Where( r => r.RegistrationInstanceId == registrationInstanceId.Value ).ToList();
-                Registration emptyRegistration = new Registration { Id = -1, FirstName = "" };
-                registrations.Insert( 0, emptyRegistration );
-                ddlRegistrations.DataSource = registrations;
+                var registrations = registrationService.Queryable().AsNoTracking()
+                    .Where( r => r.RegistrationInstanceId == registrationInstanceId.Value )
+                    .ToList();
+
+                // convert to something we can modify to show FirstName as first and last
+                var registrationsList = registrations.OrderBy( r => r.FirstName ).ThenBy( r => r.LastName )
+                    .Select( r => new { Id = r.Id, FirstName = string.Format( "{0} {1}", r.FirstName, r.LastName ) } )
+                    .ToList();
+                registrationsList.Insert( 0, new { Id = -1, FirstName = "" } );
+                
+                ddlRegistrations.DataSource = registrationsList;
                 ddlRegistrations.Visible = true;
                 ddlRegistrations.DataBind();
 
@@ -535,22 +714,6 @@ namespace RockWeb.Plugins.com_centralaz.Utility
                     litOutput.Text = string.Empty;
                 }
             }
-        }
-
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the ddlWorkflows control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected void ddlWorkflows_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            RockContext rockContext = new RockContext();
-            WorkflowService workflowService = new WorkflowService( rockContext );
-            mergeFields.Add( "Workflow", workflowService.Get( ddlWorkflows.SelectedValueAsInt() ?? -1 ) );
-            SetUserPreference( _USER_PREF_WORKFLOW, ddlWorkflows.SelectedValue );
-
-            //ResolveLava();
-            litOutput.Text = string.Empty;
         }
 
         /// <summary>
@@ -585,7 +748,7 @@ namespace RockWeb.Plugins.com_centralaz.Utility
         protected void ResolveLava()
         {
             string lava = ceLava.Text;
-            litOutput.Text = lava.ResolveMergeFields( mergeFields );
+            litOutput.Text = lava.ResolveMergeFields( mergeFields, GetAttributeValue( "EnabledLavaCommands" ) );
             if ( cbEnableDebug.Checked )
             {
                 litDebug.Text = mergeFields.lavaDebugInfo();
@@ -614,5 +777,17 @@ namespace RockWeb.Plugins.com_centralaz.Utility
             SetUserPreference( _USER_PREF_GROUP, gpGroups.SelectedValue );
             litOutput.Text = string.Empty;
         }
-}
+
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the cbIncludeInactive control and rebinds the Workflow instances
+        /// as if the Workflow Type just changed in order to include/exclude inactive workflow instances.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected void cbIncludeInactive_CheckedChanged( object sender, EventArgs e )
+        {
+            wfpWorkflowType_SelectItem( sender, e );
+        }
+    }
 }
